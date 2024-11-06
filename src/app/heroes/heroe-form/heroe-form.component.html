@@ -1,0 +1,39 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="heroeForm">
+  <div class="form-group">
+    <label for="name">Nombre</label>
+    <input
+      id="name"
+      formControlName="name"
+      type="text"
+      placeholder="Nombre del héroe"
+      class="form-input"
+      appUpperCase
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="power">Poder</label>
+    <input
+      id="power"
+      formControlName="power"
+      type="text"
+      placeholder="Poder del héroe"
+      class="form-input"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="alias">Alias</label>
+    <input
+      id="alias"
+      formControlName="alias"
+      type="text"
+      placeholder="Alias del héroe"
+      class="form-input"
+    />
+  </div>
+
+  <button type="submit" class="btn-submit" [disabled]="!heroeForm.valid">
+    Guardar
+  </button>
+</form>

@@ -1,0 +1,67 @@
+<button (click)="onAddHeroe()" class="btn-add">Añadir Héroe</button>
+
+<div>
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Buscar héroe"
+      [(ngModel)]="searchText"
+      (keyup)="onInputChange()"
+    />
+  </mat-form-field>
+</div>
+
+<table mat-table [dataSource]="listDataSource" matSort>
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="power">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Poder</th>
+    <td mat-cell *matCellDef="let element">{{ element.power }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="alias">
+    <th mat-header-cell *matHeaderCellDef>Alias</th>
+    <td mat-cell *matCellDef="let element">{{ element.alias || "-" }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Acciones</th>
+    <td mat-cell *matCellDef="let element">
+      <div style="display: flex; gap: 8px">
+        <button
+          mat-button
+          color="accent"
+          (click)="onEditHeroe(element)"
+          class="btn-edit"
+        >
+          Editar
+        </button>
+        <button
+          mat-button
+          color="warn"
+          (click)="onDeleteHeroe(element)"
+          class="btn-delete"
+        >
+          Eliminar
+        </button>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+<mat-paginator
+  [pageSizeOptions]="[5, 10, 25]"
+  showFirstLastButtons
+  aria-label="Select page"
+></mat-paginator>
